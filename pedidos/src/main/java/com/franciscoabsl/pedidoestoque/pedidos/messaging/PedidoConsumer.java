@@ -29,11 +29,16 @@ public class PedidoConsumer {
             Pedido pedido = optionalPedido.get();
 
             pedido.setStatus(statusDto.getStatus());
+
+            if ("CONFIRMADO".equals(statusDto.getStatus())) {
+                pedido.setValorTotal(statusDto.getValorTotal());
+            } else {
+                pedido.setValorTotal(0.0);
+            }
+
             pedidoRepository.save(pedido);
 
-            System.out.println("-> Pedidos: Pedido " + pedido.getId() + " finalizado com status: " + statusDto.getStatus());
-        } else {
-            System.err.println("-> Pedidos: Erro! Pedido com ID " + statusDto.getIdPedido() + " não encontrado para atualização.");
+            System.out.println("-> Pedidos: Pedido " + pedido.getId() + " finalizado com status: " + statusDto.getStatus() + ", Valor: " + pedido.getValorTotal());
         }
     }
 }

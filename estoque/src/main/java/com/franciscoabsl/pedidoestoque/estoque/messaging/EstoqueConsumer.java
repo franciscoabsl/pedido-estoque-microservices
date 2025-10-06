@@ -26,21 +26,22 @@ public class EstoqueConsumer {
     public void consumirReserva(ReservaEstoqueDTO reservaDto) {
         Long idPedido = reservaDto.getIdPedido();
         String statusFinal;
+        Double valorTotalCalculado = 0.0;
 
         try {
             System.out.println("<- Estoque: Recebido pedido " + idPedido + " para reserva.");
 
-            produtoService.reservarEstoque(reservaDto.getItens());
+            valorTotalCalculado = produtoService.reservarEstoque(reservaDto.getItens());
 
             statusFinal = "CONFIRMADO";
-            System.out.println("-> Estoque: Pedido " + idPedido + " confirmado. Estoque atualizado.");
+            System.out.println("-> Estoque: Pedido " + idPedido + " confirmado. Valor: " + valorTotalCalculado);
 
         } catch (RuntimeException e) {
             statusFinal = "CANCELADO";
             System.err.println("-> Estoque: Pedido " + idPedido + " CANCELADO. Motivo: " + e.getMessage());
         }
 
-        ReservaStatusDTO statusDto = new ReservaStatusDTO(idPedido, statusFinal);
+        ReservaStatusDTO statusDto = new ReservaStatusDTO(idPedido, statusFinal, valorTotalCalculado);
 
         rabbitTemplate.convertAndSend("", respostaQueue, statusDto);
         System.out.println("-> Estoque: Status '" + statusFinal + "' enviado para o Pedido " + idPedido);
