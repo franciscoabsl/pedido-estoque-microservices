@@ -18,6 +18,7 @@
   <modules>
     <module>pedidos</module>
     <module>estoque</module>
+    <module>common-messaging</module>
   </modules>
 
   <properties>
