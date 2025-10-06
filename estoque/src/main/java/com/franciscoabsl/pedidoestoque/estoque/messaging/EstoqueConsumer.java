@@ -1,7 +1,7 @@
 package com.franciscoabsl.pedidoestoque.estoque.messaging;
 
-import com.franciscoabsl.messaging.ReservaEstoqueDTO;
-import com.franciscoabsl.messaging.ReservaStatusDTO;
+import com.franciscoabsl.pedidoestoque.estoque.dto.ReservaEstoqueDTO;
+import com.franciscoabsl.pedidoestoque.estoque.dto.ReservaStatusDTO;
 import com.franciscoabsl.pedidoestoque.estoque.service.ProdutoService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

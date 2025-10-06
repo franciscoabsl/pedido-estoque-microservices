@@ -1,12 +1,13 @@
+version: '3.8'
+
 services:
-  # 1. RabbitMQ Service
   rabbitmq:
     image: rabbitmq:3-management
     hostname: rabbitmq
     container_name: rabbitmq
     ports:
-      - "5672:5672"   # Porta padrão para comunicação cliente/servidor
-      - "15672:15672" # Porta para o Management Plugin (UI)
+      - "5672:5672"   # Porta padrão AMQP
+      - "15672:15672" # Porta para o Management Plugin (UI: http://localhost:15672)
     environment:
       RABBITMQ_DEFAULT_USER: user
       RABBITMQ_DEFAULT_PASS: password
@@ -15,12 +16,13 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - app_network
 
-  # 2. Microsserviço de Pedidos
   pedidos:
     build:
-      context: ./microsservico-pedidos
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./pedidos/Dockerfile
     container_name: microsservico-pedidos
     ports:
       - "8081:8081"
@@ -29,12 +31,13 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
+    networks:
+      - app_network
 
-  # 3. Microsserviço de Produtos
   produtos:
     build:
-      context: ./microsservico-produtos
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./estoque/Dockerfile
     container_name: microsservico-produtos
     ports:
       - "8082:8082"
@@ -43,3 +46,9 @@ services:
     depends_on:
       rabbitmq:
         condition: service_healthy
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge

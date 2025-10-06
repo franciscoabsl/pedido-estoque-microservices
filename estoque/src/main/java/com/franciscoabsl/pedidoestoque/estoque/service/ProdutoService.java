@@ -1,6 +1,6 @@
 package com.franciscoabsl.pedidoestoque.estoque.service;
 
-import com.franciscoabsl.messaging.ItemDTO;
+import com.franciscoabsl.pedidoestoque.estoque.dto.ItemDTO;
 import com.franciscoabsl.pedidoestoque.estoque.model.Produto;
 import com.franciscoabsl.pedidoestoque.estoque.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.franciscoabsl.messaging;
+package com.franciscoabsl.pedidoestoque.estoque.dto;
 
 import java.io.Serializable;
 import java.util.List;
