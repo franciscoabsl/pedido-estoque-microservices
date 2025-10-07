@@ -104,13 +104,7 @@ O pedido é criado, mas a quantidade do Produto ID 4 (Cadeira Gamer, estoque 3) 
 | `microsservico-pedidos` | `<- Pedidos: Recebido status 'CANCELADO' para o Pedido 2` | |
 | `microsservico-pedidos` | `-> Pedidos: Pedido 2 finalizado com status: CANCELADO, Valor: 0.0` | **CANCELADO** |
 
-### 3\. Como Consultar o Status Final
-
-Com certeza. Vamos refinar a documentação final focando apenas nos exemplos de requisição e resposta JSON, mantendo o contexto dos modelos que acabamos de incluir.
-
------
-
-# 5\. Exemplos de Fluxo com JSON
+## Exemplos de Fluxo com JSON
 
 Estes exemplos demonstram a comunicação síncrona (POST e GET) do cliente e o resultado da atualização assíncrona feita pelo RabbitMQ.
 
