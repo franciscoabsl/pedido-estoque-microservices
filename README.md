@@ -1,7 +1,3 @@
-Seu `README.md` final está pronto. Incluímos os logs de sucesso e falha que você forneceu para demonstrar a robustez do fluxo assíncrono e a funcionalidade de **compensação** em caso de falta de estoque.
-
------
-
 # 🛒 Sistema de Compras Assíncronas com Microsserviços e RabbitMQ
 
 Este projeto demonstra uma arquitetura de microsserviços (MSA) com comunicação **assíncrona** coordenada por uma fila de mensagens (RabbitMQ) para processamento de pedidos e controle transacional de estoque.
